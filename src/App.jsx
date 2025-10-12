@@ -1,13 +1,11 @@
-import './App.css'
+import React from 'react';
 
-function App() {
-  
-
+const App = () => {
   return (
-    <>
-      <h2 className='text-8xl'>my app</h2>
-    </>
-  )
-}
+    <div>
+      
+    </div>
+  );
+};
 
-export default App
+export default App;
