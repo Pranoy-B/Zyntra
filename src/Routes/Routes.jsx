@@ -6,6 +6,7 @@ import AllApps from '../pages/AllApps/AllApps';
 import {
     createBrowserRouter,
   } from "react-router-dom";
+import AppDetails from '../pages/AppDetails/AppDetails';
 
 
 
@@ -34,6 +35,15 @@ import {
                 </Suspense>
                 ),
                 
+                loader: () => fetch('/data1.json').then(res=>res.json())
+            },
+            {
+                path: '/appdetails/:id',
+                element: (
+                    <Suspense fallback={<div>Loading App Details...</div>}>
+                    <AppDetails />
+                </Suspense>
+                ),
                 loader: () => fetch('/data1.json').then(res=>res.json())
             }
         ]

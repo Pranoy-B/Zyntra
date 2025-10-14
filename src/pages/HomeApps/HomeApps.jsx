@@ -8,7 +8,7 @@ const HomeApps = ({homeApp}) => {
     const {image,title,downloads,ratingAvg} = homeApp;
 
     return (
-        <div className='bg-[#bdd9cd ] p-2 rounded-xl flex justify-center items-center '>
+        <div className='bg-[#bdd9cd ] p-2 border-1 border-gray-300 rounded-xl flex justify-center items-center '>
             <div className='space-y-3'>
                     <img className='w-[250px] h-[250px] rounded-xl' src={image} alt="" />
                     <h1 className='font-semibold text-xl'>{title}</h1>
