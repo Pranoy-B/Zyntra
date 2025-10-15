@@ -8,8 +8,8 @@ const ErrorPage = () => {
         <div className='max-w-[1280px] mx-auto flex flex-col space-y-5 justify-center items-center'>
             <img src={errorImage} alt="" />
             <h1 className='font-bold text-5xl'>Page Not Found</h1>
-            <Link>
-                <button to="/Home" className='btn btn-primary'>Go Home</button>
+            <Link to='/'>
+                <button className='btn btn-primary'>Go Home</button>
             </Link>
         </div>
     );

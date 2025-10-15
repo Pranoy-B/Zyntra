@@ -3,6 +3,7 @@ import Banner from '../../components/Banner/Banner';
 import States from '../../components/States/States';
 import { useLoaderData } from 'react-router-dom';
 import HomeApps from '../HomeApps/HomeApps';
+import { NavLink } from 'react-router-dom';
 
 const Home = () => {
     const homeAppsData = useLoaderData()
@@ -19,6 +20,10 @@ const Home = () => {
                     homeAppsData.map(homeApp=><HomeApps key={homeApp.id} homeApp={homeApp}></HomeApps>)
                 }
             </div>
+            <div className='flex justify-center items-center p-5'>
+                <NavLink to="/allapps"><button className='flex justify-center items-center space-x-2 border-2 border-gray-200 p-2 bg-white rounded-md font-bold text-[#074fad]'>Show ALl</button></NavLink>
+            </div>
+            
         </div>
     );
 };

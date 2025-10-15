@@ -1,6 +1,6 @@
 import React from "react";
 import logo from '../../assets/logo.png'
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { AiOutlineHome } from "react-icons/ai";
 import { MdOutlineApps } from "react-icons/md";
 import { GrInstallOption } from "react-icons/gr";
@@ -38,14 +38,14 @@ const Navbar = () => {
               <NavLink to='/allapps'><MdOutlineApps />App</NavLink>
             </li>
             <li>
-              <NavLink><GrInstallOption />Installation</NavLink>
+              <NavLink to='/installation'><GrInstallOption />Installation</NavLink>
             </li>
           </ul>
         </div>
-        <NavLink to="/" className="flex gap-1 justify-center items-center">
+        <Link to="/" className="flex gap-1 justify-center items-center">
           <img className="h-[50px] w-[50px]" src={logo} alt="zyntra logo" />
           <h1 className="font-semibold text-2xl">Zyntra</h1>
-        </NavLink>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
@@ -56,12 +56,14 @@ const Navbar = () => {
             <NavLink to='/allapps'><MdOutlineApps />App</NavLink>
           </li>
           <li>
-            <NavLink><GrInstallOption />Installation</NavLink>
+            <NavLink to='/installation'><GrInstallOption />Installation</NavLink>
           </li>
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn bg-[#074fad] text-white">Contribute</a>
+        <NavLink to="https://github.com/Pranoy-B">
+          <button className="btn bg-[#074fad] text-white">Contribute</button>
+        </NavLink>
       </div>
     </div>
   );

@@ -4,8 +4,8 @@ import { FiStar } from "react-icons/fi";
 import { NavLink } from "react-router";
 
 const AllApp = ({allApp}) => {
-    const {image,id,title,downloads,ratingAvg, ratings} = allApp;
-    const barRating = ratings;
+    const {image,id,title,downloads,ratingAvg} = allApp;
+    
   return (
     <NavLink to={`/appdetails/${id}`}>
       <div className="bg-[#bdd9cd ] border-2 border-gray-300 p-2 rounded-xl flex justify-center items-center ">

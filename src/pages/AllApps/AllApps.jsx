@@ -1,11 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import AllApp from "../AllApp/AllApp";
 import ErrorPage from "../ErrorPage/ErrorPage";
+import AppDetailError from "../AppDetailError/AppDetailError";
 
 const AllApps = () => {
   const allAppsData = useLoaderData();
-  const [search,setSearch] = useState('');
+  const [search, setSearch] = useState("");
+  const [filtered, setFiltered] = useState(allAppsData);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+      const load = setTimeout(() => {
+      const filteredApps = allAppsData.filter((app) =>
+        app.title.toLowerCase().includes(search.toLowerCase())
+      );
+      setFiltered(filteredApps);
+      setLoading(false);
+    }, 400);
+
+    return () => clearTimeout(load); // cleanup timeout on fast typing
+  }, [search, allAppsData]);
+
+  
 
   return (
     <div className="bg-base-200">
@@ -14,7 +32,9 @@ const AllApps = () => {
         <p>Explore All Trending Apps on the Market developed by us</p>
       </div>
       <div className="flex justify-between items-center py-5">
-        <p className="font-medium text-xl">({allAppsData.length}) Apps Found</p>
+        <p className="font-medium text-xl">
+          ({filtered.length}) Apps Found
+        </p>
         <div>
           <label className="input">
             <svg
@@ -33,24 +53,32 @@ const AllApps = () => {
                 <path d="m21 21-4.3-4.3"></path>
               </g>
             </svg>
-            <input onChange={(e)=>setSearch(e.target.value)} type="search" required placeholder="Search App" />
+            <input
+              onChange={(e) => setSearch(e.target.value)}
+              type="search"
+              required
+              placeholder="Search App"
+            />
           </label>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-        {allAppsData.filter((allApp)=> {
-            if (search.toLowerCase()===''){
-                return allApp
-            }
-                
-            else if (allApp.title.toLowerCase().includes(search)){
-                return allApp
-            }
-            
-        }).map((allApp) => (
-          <AllApp key={allApp.id} allApp={allApp}></AllApp>
-        ))}
-      </div>
+
+      {loading ? (
+        <div className="flex justify-center items-center py-12">
+          <span className="loading loading-spinner loading-lg text-primary"></span>
+        </div>
+      ) : filtered.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 px-4 pb-12">
+          {filtered.map((app) => (
+            <AllApp key={app.id} allApp={app} />
+          ))}
+        </div>
+      ) : (
+        <div className="flex justify-center items-center py-12">
+          <AppDetailError />
+        </div>
+      )}
+      
     </div>
   );
 };
